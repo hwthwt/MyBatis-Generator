@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+    "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+    "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+
+<generatorConfiguration>
+    <!-- 这里写驱动包的位置 -->
+    <classPathEntry location="src/main/resources/lib/sqljdbc4-4.0.jar"/>
+    <context id="ylw">
+
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter" />
+
+        <!-- JavaBean 实现 序列化 接口 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <!-- genenat entity时,生成toString -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+        <!-- generate entity时，生成hashcode和equals方法 -->
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+
+
+
+        <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 连接配置（地址、用户名、密码） -->
+        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://127.0.0.1:1433;DatabaseName=数据库名"
+                        userId="用户名" password="密码"/>
+
+        <!-- 实体类包名及位置 -->
+        <javaModelGenerator targetPackage="com.ylw.model" targetProject="src/main/java"/>
+
+
+        <!-- mapper文件生成位置 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+        <!-- mapper对应java文件位置 -->
+        <javaClientGenerator targetPackage="com.ylw.dao.mapping" targetProject="src/main/java" type="XMLMAPPER"/>
+
+        <!-- 需要生成的表1 -->
+        <table tableName="Table1" domainObjectName="Table1" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <!-- 是否使用数据库表字段为驼峰命名 -->
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
+        <!-- 需要生成的表2 -->
+        <table tableName="Table2" domainObjectName="Table2" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+          <!-- 是否使用数据库表字段为驼峰命名 -->
+          <property name="useActualColumnNames" value="false"/>
+        </table>
+        <!-- 需要表 ...... -->
+    </context>
+</generatorConfiguration>
